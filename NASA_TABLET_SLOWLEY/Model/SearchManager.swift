@@ -153,9 +153,10 @@ class SearchManager: ImageOperationDelegate {
         var results = [NASAResult]()
         
         items.forEach { (itemData) in
-            if let item = (itemData["data"] as? [[String:Any]])?.first, let id = item["nasa_id"] as? String, let title = item["title"] as? String, let center = item["center"] as? String, let description = item["description"] as? String, let links = itemData["links"] as? [[String:Any]], let imagePath = links[0]["href"] as? String, let imageURL = URL(string: imagePath) {
+            if let item = (itemData["data"] as? [[String:Any]])?.first, let id = item["nasa_id"] as? String, let title = item["title"] as? String, let description = item["description"] as? String, let links = itemData["links"] as? [[String:Any]], let imagePath = links[0]["href"] as? String, let imageURL = URL(string: imagePath) {
                 
-                let item = NASAResult(id: id, title: title, center: center, description: description, imageURL: imageURL, imageData: nil)
+                let item = NASAResult(id: id, title: title, center: item["center"] as? String, description: description, imageURL: imageURL, imageData: nil, photographer: item["photographer"] as? String, location: item["location"] as? String)
+                
                 if cachedContent[id] == nil {
                     cachedContent[id] = item
                 }

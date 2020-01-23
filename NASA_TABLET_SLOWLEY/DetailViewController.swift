@@ -40,8 +40,8 @@ class DetailViewController: UIViewController {
 
         _title.text  = item.title
         _description.text = item.description
-        photographer.isHidden = true
-        location.isHidden = true
+        photographer.text = item.photographer ?? "Photographer name unavailable"
+        location.text = item.location ?? "Location not available"
         mainImage.image = item.image
         // Do any additional setup after loading the view.
     }

@@ -9,15 +9,17 @@
 import Foundation
 import UIKit
 
-//MARK: Option 1 - Notice no optionals the check for existance is done during fetch
+//MARK: Option 1
 
 struct NASAResult {
     let id: String
     var title: String
-    var center: String
+    var center: String?
     var description: String
     var imageURL: URL
     var imageData: Data?
+    var photographer: String?
+    var location: String?
     var image: UIImage? {
         if imageData == nil {
             return nil
@@ -29,7 +31,7 @@ struct NASAResult {
 
 //MARK: Option 2 - Codable(DID NOT USE THE CODABLE APPROACH FELT UNNECCESSARY)
 
-///Structure represents the current way in which the data is pulled - felt more confusing
+///Structure represents the current way in which the data is pulled 
 
 struct NASAResult2: Codable, Hashable {
     var links: [LinkData]?
